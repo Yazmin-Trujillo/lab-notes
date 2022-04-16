@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, lazy  } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -7,6 +7,8 @@ import {
   Link
 } from "react-router-dom";
 
+const Access = lazy(() => import('./routes/Access'));
+const Notes = lazy(() => import('./routes/Notes'));
 
 export default function App() {
   return (
@@ -15,13 +17,10 @@ export default function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Access</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
+              <Link to="/notes">Notes</Link>
             </li>
           </ul>
         </nav>
@@ -31,24 +30,11 @@ export default function App() {
    
         <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/users" element={<Users />} />
+            <Route path="/" element={<Access />} />
+            <Route path="/notes" element={<Notes />} />
         </Routes>
         </Suspense>
       </div>
     </Router>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }
