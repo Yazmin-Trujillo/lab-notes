@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/968.bfe85c81.chunk.js","mappings":"oKAAe,SAASA,IACpB,OAAO","sources":["routes/Access.tsx"],"sourcesContent":["export default function Access() {\n    return <h2>Login</h2>;\n}\n"],"names":["Access"],"sourceRoot":""}
