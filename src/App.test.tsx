@@ -2,54 +2,52 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 import { MemoryRouter } from 'react-router-dom';
+import Access from './routes/Access';
+import Notes from './routes/Notes';
 
-function MockAccess() {
-  return <div>MockComponentContent</div>;
-}
-function MockNotes() {
-  return <div>mis notas</div>;
-}
-
-jest.mock('./routes/Access', () => {
-  return MockAccess;
-})
-jest.mock('./routes/Notes', () => {
-  return MockNotes;
-})
+jest.mock('./routes/Access');
+jest.mock('./routes/Notes');
 
 describe('App component', () => {
+  const accessMock = Access as jest.MockedFunction<typeof Access>;
+  const notesMock = Notes as jest.MockedFunction<typeof Notes>;
+
   it('show navigation links', async () => {
+    accessMock.mockImplementation(() => <div>access's Test Text</div>);
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
-    await screen.findByText(/MockComponentContent/);
+    await screen.findByText(/access's Test Text/);
 
-    const accessLink = screen.getByText(/Access/i);
+    const accessLink = screen.getByText(/Access/);
     expect(accessLink).toBeInTheDocument();
-    const notesLink = screen.getByText(/Notes/i);
+    const notesLink = screen.getByText(/Notes/);
     expect(notesLink).toBeInTheDocument();
   });
+
   it('displays access page with route "/"', async () => {
+    accessMock.mockImplementation(() => <div>access's Test Text</div>);
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
 
-    const access = await screen.findByText(/MockComponentContent/);
+    const access = await screen.findByText(/access's Test Text/);
     expect(access).toBeInTheDocument();
   });
 
   it('display notes page with route "/notes"', async () => {
+    notesMock.mockImplementation(() => <div>my notes</div>);
     render(
       <MemoryRouter initialEntries={["/notes"]}>
         <App />
       </MemoryRouter>
     );
 
-    const notes = await screen.findByText(/mis notas/);
+    const notes = await screen.findByText(/my notes/);
     expect(notes).toBeInTheDocument();
   })
 });
