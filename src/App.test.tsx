@@ -2,14 +2,14 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 import { MemoryRouter } from 'react-router-dom';
-import Access from './components/Access';
+import Login from './components/Login';
 import Notes from './components/Notes';
 
 jest.mock('./Components/Access');
 jest.mock('./Components/Notes');
 
 describe('App component', () => {
-  const accessMock = Access as jest.MockedFunction<typeof Access>;
+  const accessMock = Login as jest.MockedFunction<typeof Login>;
   const notesMock = Notes as jest.MockedFunction<typeof Notes>;
 
   it('show navigation links', async () => {

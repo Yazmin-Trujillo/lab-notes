@@ -1,7 +1,7 @@
 import React from "react";
-import { signInWithGoogle } from '../lib/AccessService';
+import { signInWithGoogle } from '../lib/AuthService';
 
-export default function Access() {
+export default function Login() {
         return (
         <React.Fragment>
             <h1>My Notes</h1>

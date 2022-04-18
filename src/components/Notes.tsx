@@ -1,16 +1,16 @@
-import { User } from "firebase/auth";
 import React from "react";
-import { signOut } from "../lib/AccessService";
+import { signOut } from "../lib/AuthService";
+import { MyUser } from "../models/MyUser";
 
 type NotesProps = {
-  user: User
+  user: MyUser
 }
 
 export default function Notes({ user }: NotesProps) {
   return (
     <div className="notes">
-      <h1>Hello, <span></span>{user.displayName}</h1>
-      <img src={user.photoURL || undefined} alt='' />
+      <h1>Hello, <span></span>{user.name}</h1>
+      <img src={user.image} alt='' />
       <button className="button signout" onClick={signOut}>Sign out</button>
       <h2>Notes</h2>
     </div>

@@ -1,21 +1,19 @@
-import { onAuthStateChanged, User } from "firebase/auth";
 import { useEffect, useState } from "react";
-import Access from "./components/Access";
+import Login from "./components/Login";
 import Notes from "./components/Notes";
-import { auth } from "./lib/AccessService";
+import { userChanged } from "./lib/AuthService";
+import { MyUser } from "./models/MyUser";
 
 function App() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<MyUser | undefined>(undefined);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    })
+   userChanged.subscribe((user) => {setUser(user)})
   }, [])
 
   return (
     <div className="app">
-      {user ? <Notes user={user} /> : <Access />}
+      {user ? <Notes user={user} /> : <Login />}
     </div>
   );
 }
