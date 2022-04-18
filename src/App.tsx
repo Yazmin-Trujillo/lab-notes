@@ -8,7 +8,7 @@ function App() {
   const [user, setUser] = useState<MyUser | undefined>(undefined);
 
   useEffect(() => {
-   userChanged.subscribe((user) => {setUser(user)})
+    userChanged().subscribe((user) =>  setUser(user))
   }, [])
 
   return (

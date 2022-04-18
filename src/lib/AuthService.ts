@@ -27,16 +27,18 @@ const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
   'login_hint': 'user@example.com'
 });
-export const userChanged = new Subject<MyUser | undefined>();
+const userChangedSubject = new Subject<MyUser | undefined>();
+
 
 onAuthStateChanged(auth, (user) => {
   if (!user) {
-    userChanged.next(undefined);
+    userChangedSubject.next(undefined);
   } else {
     const myUser: MyUser = { name: user.displayName || '', image: user.photoURL || '' }
-    userChanged.next(myUser);
+    userChangedSubject.next(myUser);
   }
 })
 
 export const signInWithGoogle = () => signInWithPopup(auth, provider);
 export const signOut = () => auth.signOut();
+export const userChanged = () => userChangedSubject.asObservable()

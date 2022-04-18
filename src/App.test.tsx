@@ -1,51 +1,36 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import { MemoryRouter } from 'react-router-dom';
 import Login from './components/Login';
 import Notes from './components/Notes';
+import { userChanged } from './lib/AuthService';
+import { Observable, of } from 'rxjs';
 
-jest.mock('./Components/Access');
-jest.mock('./Components/Notes');
+jest.mock('./components/Login');
+jest.mock('./components/Notes');
+jest.mock('./lib/AuthService')
 
 describe('App component', () => {
-  const accessMock = Login as jest.MockedFunction<typeof Login>;
+
+  const loginMock = Login as jest.MockedFunction<typeof Login>;
   const notesMock = Notes as jest.MockedFunction<typeof Notes>;
+  const userChangedMock = userChanged as jest.MockedFunction<Observable>
 
-  it('show navigation links', async () => {
-    accessMock.mockImplementation(() => <div>access's Test Text</div>);
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
-    await screen.findByText(/access's Test Text/);
+  it('displays Login page when user is undefined', async () => {
+    userChangedMock.mockImplementation(() => of(undefined));
+    loginMock.mockImplementation(() => <div>access's Test Text</div>);
 
-    const accessLink = screen.getByText(/Access/);
-    expect(accessLink).toBeInTheDocument();
-    const notesLink = screen.getByText(/Notes/);
-    expect(notesLink).toBeInTheDocument();
-  });
-
-  it('displays access page with route "/"', async () => {
-    accessMock.mockImplementation(() => <div>access's Test Text</div>);
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
+    render(<App />);
 
     const access = await screen.findByText(/access's Test Text/);
     expect(access).toBeInTheDocument();
   });
 
-  it('display notes page with route "/notes"', async () => {
+  it('display Notes page when user is defined', async () => {
+    userChangedMock.mockImplementation(() => of({ name: 'cualquiercosa', image: 'cualquiercosa' }));
     notesMock.mockImplementation(() => <div>my notes</div>);
-    render(
-      <MemoryRouter initialEntries={["/notes"]}>
-        <App />
-      </MemoryRouter>
-    );
+
+    render(<App />);
 
     const notes = await screen.findByText(/my notes/);
     expect(notes).toBeInTheDocument();
