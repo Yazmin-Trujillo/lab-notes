@@ -2,11 +2,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 import { MemoryRouter } from 'react-router-dom';
-import Access from './routes/Access';
-import Notes from './routes/Notes';
+import Access from './components/Access';
+import Notes from './components/Notes';
 
-jest.mock('./routes/Access');
-jest.mock('./routes/Notes');
+jest.mock('./Components/Access');
+jest.mock('./Components/Notes');
 
 describe('App component', () => {
   const accessMock = Access as jest.MockedFunction<typeof Access>;
