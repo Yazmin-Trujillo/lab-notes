@@ -1,12 +1,14 @@
 import React from "react";
+import './Login.css';
 import { signInWithGoogle } from '../lib/AuthService';
 
 export default function Login() {
         return (
-        <React.Fragment>
+        <div className="Login">
             <h1>My Notes</h1>
-            <p>Do you look bad for forgetting meetings, payments, shopping? forget about that too and start keeping track of your activities quickly and clearly.</p>
-            <button className="button" onClick={signInWithGoogle}>Google</button>
-        </React.Fragment>
+            <p className="text-login">Do you look bad for forgetting meetings, payments, shopping? forget about that too and start keeping track of your activities quickly and clearly.</p>
+            <p>Login with </p>
+            <button className="Login-button" data-testid="google-login" onClick={signInWithGoogle}>Google</button>
+        </div>
     );
 }

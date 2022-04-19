@@ -34,7 +34,7 @@ onAuthStateChanged(auth, (user) => {
   if (!user) {
     userChangedSubject.next(undefined);
   } else {
-    const myUser: MyUser = { name: user.displayName || '', image: user.photoURL || '' }
+    const myUser: MyUser = { name: user.displayName || '', image: user.photoURL ||'', email: user.email || '' }
     userChangedSubject.next(myUser);
   }
 })

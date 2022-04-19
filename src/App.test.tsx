@@ -4,17 +4,17 @@ import App from './App';
 import Login from './components/Login';
 import Notes from './components/Notes';
 import { userChanged } from './lib/AuthService';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 
 jest.mock('./components/Login');
 jest.mock('./components/Notes');
-jest.mock('./lib/AuthService')
+jest.mock('./lib/AuthService');
 
 describe('App component', () => {
 
   const loginMock = Login as jest.MockedFunction<typeof Login>;
   const notesMock = Notes as jest.MockedFunction<typeof Notes>;
-  const userChangedMock = userChanged as jest.MockedFunction<Observable>
+  const userChangedMock = userChanged as jest.MockedFunction<any>
 
   it('displays Login page when user is undefined', async () => {
     userChangedMock.mockImplementation(() => of(undefined));
@@ -22,8 +22,8 @@ describe('App component', () => {
 
     render(<App />);
 
-    const access = await screen.findByText(/access's Test Text/);
-    expect(access).toBeInTheDocument();
+    const login = await screen.findByText(/access's Test Text/);
+    expect(login).toBeInTheDocument();
   });
 
   it('display Notes page when user is defined', async () => {
@@ -34,5 +34,6 @@ describe('App component', () => {
 
     const notes = await screen.findByText(/my notes/);
     expect(notes).toBeInTheDocument();
-  })
+  });
+
 });
