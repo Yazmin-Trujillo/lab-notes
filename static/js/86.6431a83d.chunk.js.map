@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/86.6431a83d.chunk.js","mappings":"kKAAe,SAASA,IACpB,OAAO","sources":["routes/Notes.tsx"],"sourcesContent":["export default function Notes() {\n    return <h2>Notes</h2>;\n  }\n  "],"names":["Notes"],"sourceRoot":""}

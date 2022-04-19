@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunklab_notes=self.webpackChunklab_notes||[]).push([[86],{86:function(n,e,t){t.r(e),t.d(e,{default:function(){return s}});var u=t(184);function s(){return(0,u.jsx)("h2",{children:"Notes"})}}}]);
-//# sourceMappingURL=86.6431a83d.chunk.js.map
