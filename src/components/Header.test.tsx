@@ -11,7 +11,7 @@ describe('Header component', () => {
     const signOutMock = signOut as jest.MockedFunction<any>
 
     it('call signOut when clicking in button signOut', () => {
-        let user={name:'', image:'', email:''}
+        let user={uid:'', name:'', image:'', email:''}
         render(<Header user={user} />);
 
         const button = screen.getByTestId('signOut');

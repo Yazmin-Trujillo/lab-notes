@@ -12,7 +12,7 @@ export default function Notes({ user }: NotesProps) {
   return (
     <React.Fragment>
       <Header user={user}></Header>
-      <Main></Main>
+      <Main user={user}></Main>
 
     </React.Fragment>
   )

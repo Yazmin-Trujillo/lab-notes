@@ -17,7 +17,7 @@
 
 .note-area-title:focus-visible {
     outline: none;
-} 
+}
 
 .note-area-textarea {
     width: 90%;
@@ -48,7 +48,6 @@
 
 .minimized .note-area-textarea {
     height: 1em;
-
 }
 
 .minimized .close-note-area {
