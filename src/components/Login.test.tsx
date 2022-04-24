@@ -4,8 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { signInWithGoogle } from "../lib/AuthService";
 import Login from './Login';
 
-jest.mock('../lib/AuthService')
-
+jest.mock('../lib/AuthService', () => ({ signInWithGoogle: jest.fn() }))
 
 describe('Login component', () => {
 
