@@ -3,11 +3,11 @@ import './Header.css';
 import { signOut } from "../lib/AuthService";
 import { MyUser } from "../models/MyUser";
 
-type HeaderProps = {
+type Props = {
   user: MyUser
 }
 
-export default function Header({ user }: HeaderProps) {
+export default function Header({ user }: Props) {
   const [showProfile, setShowProfile] = useState<boolean>(false);
 
   return (
