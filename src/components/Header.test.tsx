@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { signOut } from '../lib/AuthService';
 import Header from './Header';
 
-jest.mock('../lib/AuthService')
+jest.mock('../lib/AuthService', () => ({ signOut: jest.fn() }))
 
 
 describe('Header component', () => {

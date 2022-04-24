@@ -31,7 +31,7 @@ export default function Main({ user }: MainProps) {
 
     return (
         <React.Fragment>
-            <div className={`note-area-container ${showNoteArea ? "" : "minimized"}`}>
+            <div className={`note-area-container ${showNoteArea ? "" : "minimized"}`} data-testid="note-panel">
                 <div>
                     <input
                         className="note-area-title"
