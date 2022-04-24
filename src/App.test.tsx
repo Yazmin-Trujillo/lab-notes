@@ -6,9 +6,9 @@ import Notes from './components/Notes';
 import { userChanged } from './lib/AuthService';
 import { of } from 'rxjs';
 
-jest.mock('./components/Login');
-jest.mock('./components/Notes');
-jest.mock('./lib/AuthService');
+jest.mock('./components/Login', () => jest.fn());
+jest.mock('./components/Notes', () => jest.fn());
+jest.mock('./lib/AuthService', () => ({ userChanged: jest.fn() }));
 
 describe('App component', () => {
 

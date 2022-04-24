@@ -4,7 +4,6 @@ import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from
 import { Subject } from "rxjs";
 import { MyUser } from "../models/MyUser";
 
-
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,7 +20,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
+export const app= initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
@@ -34,7 +33,7 @@ onAuthStateChanged(auth, (user) => {
   if (!user) {
     userChangedSubject.next(undefined);
   } else {
-    const myUser: MyUser = { name: user.displayName || '', image: user.photoURL ||'', email: user.email || '' }
+    const myUser: MyUser = { uid: user.uid,  name: user.displayName || '', image: user.photoURL ||'', email: user.email || '' }
     userChangedSubject.next(myUser);
   }
 })
@@ -42,3 +41,5 @@ onAuthStateChanged(auth, (user) => {
 export const signInWithGoogle = () => signInWithPopup(auth, provider);
 export const signOut = () => auth.signOut();
 export const userChanged = () => userChangedSubject.asObservable()
+
+
