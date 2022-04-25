@@ -1,0 +1,22 @@
+.section-notes {
+    display: grid;
+    gap: .5em;
+    margin-top: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.note-card {
+    background-color: #ffffffde;
+    text-align: justify;
+    border-radius: 10px;
+    border: 1px solid #00000066;
+    padding: .75em;
+
+}
+
+.note-content pre {
+    white-space: pre-wrap;
+    word-break: keep-all;
+}

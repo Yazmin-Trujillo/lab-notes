@@ -1,7 +1,8 @@
 import React from "react"
 import { MyUser } from "../models/MyUser";
-import './Main'
+import './Main.css'
 import CreateNotePanel from "./CreateNotePanel";
+import NoteListPanel from "./NoteListPanel";
 
 type Props = {
     user: MyUser
@@ -9,8 +10,9 @@ type Props = {
 
 export default function Main({ user }: Props) {
     return (
-        <React.Fragment>
+        <main>
             <CreateNotePanel user={user}></CreateNotePanel>
-        </React.Fragment>
+            <NoteListPanel user={user}></NoteListPanel>
+        </main>
     )
 }
