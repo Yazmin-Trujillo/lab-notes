@@ -16,7 +16,15 @@
 
 }
 
+.note-title p{
+    margin: 0;
+    margin-bottom: .3em;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
 .note-content pre {
     white-space: pre-wrap;
     word-break: keep-all;
+    margin: 0;
 }

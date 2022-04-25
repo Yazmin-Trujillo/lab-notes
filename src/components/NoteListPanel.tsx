@@ -18,8 +18,8 @@ export default function NoteListPanel({ user }: Props) {
             <section className="section-notes">
                 {note.map((value, index) => {
                     return <article key={index} className="note-card">
-                        <div className="note-title"><h2>{value.title}</h2></div>
-                        <div className="note-content"><pre> {value.content}</pre></div>
+                        <div className="note-title"><p>{value.title}</p></div>
+                        <div className="note-content"><pre>{value.content}</pre></div>
                     </article>
                 })}
             </section>
