@@ -11,7 +11,7 @@ describe('Main component', () => {
     const saveNoteMock = saveNote as jest.MockedFunction<any>
 
     it('when clicking in input New Note, show expanded note', () => {
-        let user = { uid: '', name: '', image: '', email: '' }
+        let user = { uid: '', name: '', image: '', email: '' };
         render(<CreateNotePanel user={user} />);
 
         const notePanel= screen.getByTestId('note-panel');
