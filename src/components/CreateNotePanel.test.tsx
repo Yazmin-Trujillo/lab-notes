@@ -1,6 +1,6 @@
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
-import Main from './Main';
+import CreateNotePanel from './CreateNotePanel';
 import { saveNote } from '../lib/DbService'
 import userEvent from '@testing-library/user-event';
 import { Note } from '../models/Note';
@@ -11,8 +11,8 @@ describe('Main component', () => {
     const saveNoteMock = saveNote as jest.MockedFunction<any>
 
     it('when clicking in input New Note, show expanded note', () => {
-        let user = { uid: '', name: '', image: '', email: '' }
-        render(<Main user={user} />);
+        let user = { uid: '', name: '', image: '', email: '' };
+        render(<CreateNotePanel user={user} />);
 
         const notePanel= screen.getByTestId('note-panel');
         expect(notePanel.classList).toContain('minimized');
@@ -24,7 +24,7 @@ describe('Main component', () => {
 
     it('when clicking close button, if the note is not empty it is saved', () => {
         let user = { uid: '', name: '', image: '', email: '' }
-        render(<Main user={user} />);
+        render(<CreateNotePanel user={user} />);
 
         const noteContent = screen.getByTestId('note-content');
         act(() => noteContent.click());
@@ -43,7 +43,7 @@ describe('Main component', () => {
     it('after saving the note the text box is cleared and hidden.', () => {
         saveNoteMock.mockReturnValueOnce(Promise.resolve());
         let user = { uid: '', name: '', image: '', email: '' }
-        render(<Main user={user} />);
+        render(<CreateNotePanel user={user} />);
 
         const noteContent = screen.getByTestId<HTMLTextAreaElement>('note-content');
         act(() => noteContent.click());

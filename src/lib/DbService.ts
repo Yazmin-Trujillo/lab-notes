@@ -1,4 +1,5 @@
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, onSnapshot, Timestamp, query, orderBy, QuerySnapshot, DocumentData } from "firebase/firestore";
+import { Observable } from "rxjs";
 import { MyUser } from "../models/MyUser";
 import { Note } from "../models/Note";
 import { app } from "./AuthService";
@@ -9,10 +10,27 @@ export const saveNote = async (user: MyUser, note: Note) => {
     try {
         const docRef = await addDoc(collection(db, 'users', user.uid, "notes"), {
             title: note.title,
-            content: note.content
+            content: note.content,
+            createDate: Timestamp.fromDate(new Date())
         });
-        console.log("Document written with ID: ", docRef.id);
+        // console.log("Document written with ID: ", docRef.id);
     } catch (e) {
         console.error("Error adding document: ", e);
     }
+};
+
+export const seeNotes = (user: MyUser) => {
+    const notesRef = collection(db, 'users', user.uid, "notes");
+    const orderByCreateDateQuery = query(notesRef, orderBy("createDate", "desc"));
+
+    return new Observable<Note[]>(observer => {
+        onSnapshot(orderByCreateDateQuery, (snapshot) => {
+            let notes: Note[] = [];
+            snapshot.docs.forEach((doc) => {
+                let note: Note = { title: doc.data().title, content: doc.data().content };
+                notes.push(note);
+            });
+            observer.next(notes);
+        });
+    });
 };

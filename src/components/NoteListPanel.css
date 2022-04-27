@@ -1,0 +1,59 @@
+.section-notes {
+    display: grid;
+    gap: .5em;
+    margin-top: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.note-card {
+    background-color: #ffffffde;
+    text-align: justify;
+    border-radius: 10px;
+    border: 1px solid #00000066;
+    padding: .75em;
+
+}
+
+.note-title p {
+    margin: 0;
+    margin-bottom: .3em;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.note-content pre {
+    white-space: pre-wrap;
+    word-break: keep-all;
+    margin: 0;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .section-notes {
+        margin-left: 4em;
+        margin-right: 4em;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .section-notes {
+        margin-left: 6em;
+        margin-right: 6em;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .section-notes {
+        margin-left: 8em;
+        margin-right: 8em;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}

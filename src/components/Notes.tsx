@@ -13,7 +13,6 @@ export default function Notes({ user }: NotesProps) {
     <React.Fragment>
       <Header user={user}></Header>
       <Main user={user}></Main>
-
     </React.Fragment>
   )
 }
