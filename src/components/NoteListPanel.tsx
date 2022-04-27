@@ -14,15 +14,15 @@ export default function NoteListPanel({ user }: Props) {
         seeNotes(user).subscribe((notes) => setNote(notes));
     }, [user])
     return (
-        <React.Fragment>
-            <section className="section-notes">
+        <>
+            <section className="section-notes" data-testid="section" >
                 {note.map((value, index) => {
-                    return <article key={index} className="note-card">
+                    return <article key={index} className="note-card" data-testid="article">
                         <div className="note-title"><p>{value.title}</p></div>
                         <div className="note-content"><pre>{value.content}</pre></div>
                     </article>
                 })}
             </section>
-        </React.Fragment>
+        </>
     )
 }

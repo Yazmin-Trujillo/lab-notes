@@ -5,7 +5,7 @@ import Notes from './Notes';
 describe('Notes component', () => {
 
     it('show Header', () => {
-        let user={uid:'', name:'', image:'', email:''}
+        let user = { uid: 'testUserUid', name: '', image: '', email: '' }
         render(<Notes user={user} />);
 
         const notes = screen.getByTestId('header');
