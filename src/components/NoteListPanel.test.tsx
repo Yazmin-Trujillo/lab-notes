@@ -21,7 +21,7 @@ describe('NoteListPanel component', () => {
     });
 
     it('single note is displayed', () => {
-        const testNote: Note = { title: 'compras', content: 'pan' }
+        const testNote: Note = { title: 'compras', content: 'pan', id: '2gf3d4s5s' }
         seeNotesMock.mockImplementation(() => of([testNote]));
 
         let user = { uid: '', name: '', image: '', email: '' };
@@ -34,7 +34,7 @@ describe('NoteListPanel component', () => {
     });
 
     it('multiple notes are displayed', () => {
-        const testNote: Note = { title: 'compras', content: 'pan' }
+        const testNote: Note = { title: 'compras', content: 'pan', id: '1f2f3g3h4' }
         seeNotesMock.mockImplementation(() => of([testNote, testNote]));
 
         let user = { uid: '', name: '', image: '', email: '' };

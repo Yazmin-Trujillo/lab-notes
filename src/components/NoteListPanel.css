@@ -13,7 +13,8 @@
     border-radius: 10px;
     border: 1px solid #00000066;
     padding: .75em;
-
+    display: flex;
+    flex-direction: column;
 }
 
 .note-title p {
@@ -23,10 +24,24 @@
     font-weight: bold;
 }
 
+.note-content {
+    flex: 1;
+}
+
 .note-content pre {
     white-space: pre-wrap;
     word-break: keep-all;
     margin: 0;
+}
+
+.note-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon {
+    width: 1.5em;
+    cursor: pointer;
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
