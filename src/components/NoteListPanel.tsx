@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { seeNotes } from "../lib/DbService";
 import { MyUser } from "../models/MyUser";
 import { Note } from "../models/Note";
+import NoteCard from "./NoteCard";
 import './NoteListPanel.css'
 
 type Props = {
@@ -9,18 +10,15 @@ type Props = {
 }
 
 export default function NoteListPanel({ user }: Props) {
-    const [note, setNote] = useState<Note[]>([]);
+    const [notes, setNotes] = useState<Note[]>([]);
     useEffect(() => {
-        seeNotes(user).subscribe((notes) => setNote(notes));
+        seeNotes(user).subscribe((notes) => setNotes(notes));
     }, [user])
     return (
         <>
             <section className="section-notes" data-testid="section" >
-                {note.map((value, index) => {
-                    return <article key={index} className="note-card" data-testid="article">
-                        <div className="note-title"><p>{value.title}</p></div>
-                        <div className="note-content"><pre>{value.content}</pre></div>
-                    </article>
+                {notes.map((note, index) => {
+                    return <NoteCard key={index} user={user} note={note} />
                 })}
             </section>
         </>

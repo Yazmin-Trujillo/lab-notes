@@ -53,3 +53,32 @@
 .minimized .close-note-area {
     display: none;
 }
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .note-area-container {
+        width: 50%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .note-area-container {
+        width: 50%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .note-area-container {
+        width: 45%;
+    }
+}
+
+
+/* Extra extra large devices (1400px and up) */
+@media only screen and (min-width: 1400px) {
+    .note-area-container {
+        width: 40%;
+    }
+}

@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc, onSnapshot, Timestamp, query, orderBy, QuerySnapshot, DocumentData } from "firebase/firestore";
+import { getFirestore, collection, addDoc, onSnapshot, Timestamp, query, orderBy, doc, deleteDoc } from "firebase/firestore";
 import { Observable } from "rxjs";
 import { MyUser } from "../models/MyUser";
 import { Note } from "../models/Note";
@@ -27,10 +27,14 @@ export const seeNotes = (user: MyUser) => {
         onSnapshot(orderByCreateDateQuery, (snapshot) => {
             let notes: Note[] = [];
             snapshot.docs.forEach((doc) => {
-                let note: Note = { title: doc.data().title, content: doc.data().content };
+                let note: Note = { title: doc.data().title, content: doc.data().content, id: doc.id };
                 notes.push(note);
             });
             observer.next(notes);
         });
     });
 };
+
+export const deleteNote = async (user: MyUser, note: Note) => {
+    await deleteDoc(doc(db, 'users', user.uid, "notes", note.id));
+}

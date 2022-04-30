@@ -14,7 +14,7 @@ describe('Main component', () => {
         let user = { uid: '', name: '', image: '', email: '' };
         render(<CreateNotePanel user={user} />);
 
-        const notePanel= screen.getByTestId('note-panel');
+        const notePanel = screen.getByTestId('note-panel');
         expect(notePanel.classList).toContain('minimized');
 
         const noteContent = screen.getByTestId('note-content');
@@ -36,7 +36,7 @@ describe('Main component', () => {
         act(() => closeButton.click());
 
         expect(saveNote).toBeCalledTimes(1);
-        let note: Note = { title: 'Compras', content: 'leche,pan,huevos' };
+        let note: Note = { title: 'Compras', content: 'leche,pan,huevos', id: '' };
         expect(saveNote).toBeCalledWith(user, note);
     });
 
@@ -56,7 +56,7 @@ describe('Main component', () => {
 
         expect(title.value).toBe('');
         expect(noteContent.value).toBe('');
-        const notePanel= screen.getByTestId('note-panel');
+        const notePanel = screen.getByTestId('note-panel');
         expect(notePanel.classList).toContain('minimized')
     })
 })

@@ -1,0 +1,36 @@
+.note-card {
+    background-color: #ffffffde;
+    text-align: justify;
+    border-radius: 10px;
+    border: 1px solid #00000066;
+    padding: .75em;
+    display: flex;
+    flex-direction: column;
+}
+
+.note-title p {
+    margin: 0;
+    margin-bottom: .3em;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.note-content {
+    flex: 1;
+}
+
+.note-content pre {
+    white-space: pre-wrap;
+    word-break: keep-all;
+    margin: 0;
+}
+
+.note-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon {
+    width: 1.5em;
+    cursor: pointer;
+}

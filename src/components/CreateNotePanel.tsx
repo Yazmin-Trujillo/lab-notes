@@ -9,22 +9,23 @@ type Props = {
 }
 
 export default function CreateNotePanel({ user }: Props) {
+    const id = '';
     const [showNoteArea, setShowNoteArea] = useState<boolean>(false);
     const [title, setTitle] = useState<string>('');
     const [content, setContent] = useState<string>('');
 
     function onClose() {
         setShowNoteArea(false);
-        createNote(title, content);
+        createNote(title, content, id);
         setTitle('');
         setContent('');
     }
 
-    function createNote(title: string, content: string) {
+    function createNote(title: string, content: string, id: string) {
         if (title === '' && content === '') {
             return;
         }
-        const note: Note = { title, content };
+        const note: Note = { title, content, id };
         saveNote(user, note);
     }
 
@@ -36,8 +37,8 @@ export default function CreateNotePanel({ user }: Props) {
                         className="note-area-title"
                         placeholder="Title"
                         onChange={event => setTitle(event.target.value)}
-                        value={title} 
-                        data-testid="note-title"/>
+                        value={title}
+                        data-testid="note-title" />
                 </div>
                 <div>
                     <textarea
@@ -49,7 +50,7 @@ export default function CreateNotePanel({ user }: Props) {
                         data-testid="note-content" />
                 </div>
                 <div className="close-note-area">
-                    <button onClick={onClose}  data-testid="close-button">Close</button>
+                    <button onClick={onClose} data-testid="close-button">Close</button>
                 </div>
             </div>
         </React.Fragment>
