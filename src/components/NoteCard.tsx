@@ -2,6 +2,7 @@ import React from "react";
 import { deleteNote } from "../lib/DbService";
 import { MyUser } from "../models/MyUser";
 import { Note } from "../models/Note";
+import './NoteCard.css'
 
 type Props = {
     user: MyUser,
@@ -14,7 +15,7 @@ export default function NoteCard({ user, note }: Props) {
             <div className="note-title"><p>{note.title}</p></div>
             <div className="note-content"><pre>{note.content}</pre></div>
             <div className="note-footer">
-                <div onClick={() => deleteNote(user, note)} >
+                <div onClick={() => deleteNote(user, note)}  data-testid="delete-note">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         className="icon"
                         fill="none"

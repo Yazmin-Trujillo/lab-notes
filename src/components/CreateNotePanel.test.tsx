@@ -36,7 +36,7 @@ describe('Main component', () => {
         act(() => closeButton.click());
 
         expect(saveNote).toBeCalledTimes(1);
-        let note: Note = { title: 'Compras', content: 'leche,pan,huevos', id: 'sss2s43ss' };
+        let note: Note = { title: 'Compras', content: 'leche,pan,huevos', id: '' };
         expect(saveNote).toBeCalledWith(user, note);
     });
 

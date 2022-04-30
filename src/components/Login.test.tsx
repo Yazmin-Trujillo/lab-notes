@@ -8,7 +8,7 @@ jest.mock('../lib/AuthService', () => ({ signInWithGoogle: jest.fn() }))
 
 describe('Login component', () => {
 
-    const signInWithGoogleMock = signInWithGoogle as jest.MockedFunction<any>
+    const signInWithGoogleMock = signInWithGoogle as jest.MockedFunction<any>;
 
     it('call signInWithGoogle when clicking in button register with google', () => {
         render(<Login />);
