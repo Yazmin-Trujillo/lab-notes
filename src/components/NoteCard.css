@@ -1,4 +1,4 @@
-.note-card {
+.container .read-note-card {
     background-color: #ffffffde;
     text-align: justify;
     border-radius: 10px;
@@ -33,4 +33,8 @@
 .icon {
     width: 1.5em;
     cursor: pointer;
+}
+
+.update-note-panel .read-note-card{
+    display: none;
 }

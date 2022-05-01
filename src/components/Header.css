@@ -29,7 +29,7 @@
     top: 5em;
     left: 2em;
     background-color: white;
-    min-width: 16em;
+    width: 50%;
 }
 
 .signout-button {
@@ -55,4 +55,13 @@
 
 .hidden {
     display: none;
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+    .profile {
+        width: 40%;
+    }
 }

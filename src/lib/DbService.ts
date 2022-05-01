@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc, onSnapshot, Timestamp, query, orderBy, doc, deleteDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, onSnapshot, Timestamp, query, orderBy, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { Observable } from "rxjs";
 import { MyUser } from "../models/MyUser";
 import { Note } from "../models/Note";
@@ -12,6 +12,7 @@ export const saveNote = async (user: MyUser, note: Note) => {
             title: note.title,
             content: note.content,
             createDate: Timestamp.fromDate(new Date())
+            // timestamp: serverTimestamp()
         });
         // console.log("Document written with ID: ", docRef.id);
     } catch (e) {
@@ -37,4 +38,16 @@ export const seeNotes = (user: MyUser) => {
 
 export const deleteNote = async (user: MyUser, note: Note) => {
     await deleteDoc(doc(db, 'users', user.uid, "notes", note.id));
+}
+
+export const updateNote = async (user: MyUser, note: Note) => {
+    console.table(note);
+    const noteRef = doc(db, 'users', user.uid, "notes", note.id);
+
+    // Set the "capital" field of the city 'DC'
+    await updateDoc(noteRef, {
+        title: note.title,
+        content: note.content,
+        updateDate: Timestamp.fromDate(new Date())
+    });
 }

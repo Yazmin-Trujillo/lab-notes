@@ -1,0 +1,36 @@
+.container .update-note-panel {
+    /* border: 1px solid black;
+    width: 80%;
+    align-items: center;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    margin-left: auto;
+    margin-right: auto; */
+    width: 60%;
+    display: block;
+    text-align: center;
+    padding: 1em;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 0.5em;
+    top: 12em;
+    left: 17%;
+    background-color: white;
+    /* min-width: 16em; */
+}
+
+.note-area-title {
+    width: -webkit-fill-available;
+}
+
+.note-footer button {
+    border: none;
+    background: none;
+    color: #0c0b0b;
+    font-size: 1em;
+    padding: 0.5em 0.75em;
+}
+
+.read-note-card .update-note-panel {
+    display: none;
+}
