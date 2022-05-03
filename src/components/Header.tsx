@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import './Header.css';
 import { signOut } from "../lib/AuthService";
 import { MyUser } from "../models/MyUser";
@@ -10,9 +10,24 @@ type Props = {
 export default function Header({ user }: Props) {
   const [showProfile, setShowProfile] = useState<boolean>(false);
 
+    let divRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        let handler = (event: MouseEvent) => {
+            if (!divRef.current!.contains(event.target as Node)) {
+              setShowProfile(false);
+            }
+        }
+        document.addEventListener("click", handler);
+
+        return () => {
+            document.removeEventListener("click", handler);
+        }
+    });
+
   return (
     <React.Fragment>
-      <header data-testid="header">
+      <header ref={divRef} data-testid="header">
         <div className="toolbar">
           <button className="button-round" onClick={() => setShowProfile(!showProfile)}>{user.name.charAt(0).toUpperCase()}</button>
           <h1>My Notes</h1>

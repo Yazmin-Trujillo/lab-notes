@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { updateNote } from "../lib/DbService";
 import { MyUser } from "../models/MyUser";
 import { Note } from "../models/Note";
@@ -6,8 +6,8 @@ import './EditNotePanel.css'
 
 type Props = {
     user: MyUser,
-    note: Note
-    onClose: () => void
+    note: Note,
+    onClose: () => void,
 }
 
 export default function EditNotePanel({ user, note, onClose }: Props) {
@@ -16,20 +16,29 @@ export default function EditNotePanel({ user, note, onClose }: Props) {
     const [content, setContent] = useState<string>(note.content);
 
     function closeNote() {
-        // 
-        changeNote();
+        if (title !== note.title || content !== note.content) {
+            updateNote(user, { title, content, id });
+        }
         onClose()
     }
 
-    function changeNote() {
-        if (title === note.title && content === note.content){
-            return;
+    let divRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        let handler = (event: MouseEvent) => {
+            if (!divRef.current!.contains(event.target as Node)) {
+                onClose();
+            }
         }
-        updateNote(user,{ title, content, id });
-    }
+        document.addEventListener("click", handler);
+
+        return () => {
+            document.removeEventListener("click", handler);
+        }
+    });
 
     return (
-        <div className="update-note-panel">
+        <div ref={divRef} className="update-note-panel">
             <div>
                 <input
                     className="note-area-title"
@@ -51,6 +60,4 @@ export default function EditNotePanel({ user, note, onClose }: Props) {
             </div>
         </div>
     )
-
-
 }
