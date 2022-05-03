@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { saveNote } from "../lib/DbService";
 import { MyUser } from "../models/MyUser";
-import { Note } from "../models/Note";
 import './CreateNotePanel.css';
 
 type Props = {
@@ -15,18 +14,12 @@ export default function CreateNotePanel({ user }: Props) {
     const [content, setContent] = useState<string>('');
 
     function onClose() {
+        if (title !== '' || content !== '') {
+            saveNote(user, { title, content, id });
+        }
         setShowNoteArea(false);
-        createNote(title, content, id);
         setTitle('');
         setContent('');
-    }
-
-    function createNote(title: string, content: string, id: string) {
-        if (title === '' && content === '') {
-            return;
-        }
-        const note: Note = { title, content, id };
-        saveNote(user, note);
     }
 
     let divRef = useRef<HTMLDivElement>(null);
@@ -34,10 +27,7 @@ export default function CreateNotePanel({ user }: Props) {
     useEffect(() => {
         let handler = (event: MouseEvent) => {
             if (!divRef.current!.contains(event.target as Node)) {
-                createNote(title, content, id);
-                setShowNoteArea(false);
-                setTitle('');
-                setContent('');
+                onClose();
             }
         }
         document.addEventListener("click", handler);

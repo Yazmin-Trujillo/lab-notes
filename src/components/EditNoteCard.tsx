@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { updateNote } from "../lib/DbService";
 import { MyUser } from "../models/MyUser";
 import { Note } from "../models/Note";
-import './EditNotePanel.css'
+import './EditNoteCard.css'
 
 type Props = {
     user: MyUser,
@@ -10,7 +10,7 @@ type Props = {
     onClose: () => void,
 }
 
-export default function EditNotePanel({ user, note, onClose }: Props) {
+export default function EditNoteCard({ user, note, onClose }: Props) {
     const id = note.id;
     const [title, setTitle] = useState<string>(note.title);
     const [content, setContent] = useState<string>(note.content);
@@ -27,7 +27,7 @@ export default function EditNotePanel({ user, note, onClose }: Props) {
     useEffect(() => {
         let handler = (event: MouseEvent) => {
             if (!divRef.current!.contains(event.target as Node)) {
-                onClose();
+               closeNote();
             }
         }
         document.addEventListener("click", handler);
@@ -38,7 +38,7 @@ export default function EditNotePanel({ user, note, onClose }: Props) {
     });
 
     return (
-        <div ref={divRef} className="update-note-panel">
+        <div ref={divRef} className="update-note-card">
             <div>
                 <input
                     className="note-area-title"
