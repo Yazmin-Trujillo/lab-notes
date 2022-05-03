@@ -38,7 +38,7 @@ export default function CreateNotePanel({ user }: Props) {
     });
 
     return (
-        <div ref={divRef}  onClick={() => setShowNoteArea(true)} className={`note-area-container ${showNoteArea ? "" : "minimized"}`} data-testid="note-panel">
+        <div ref={divRef}  className={`note-area-container ${showNoteArea ? "" : "minimized"}`} data-testid="note-panel">
             <div>
                 <input
                     className="note-area-title"
@@ -53,6 +53,7 @@ export default function CreateNotePanel({ user }: Props) {
                     className="note-area-textarea"
                     onChange={event => setContent(event.target.value)}
                     value={content}
+                    onClick={() => setShowNoteArea(true)}
                     data-testid="note-content" />
             </div>
             <div className="close-note-area">
