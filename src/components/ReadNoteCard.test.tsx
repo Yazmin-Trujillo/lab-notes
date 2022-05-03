@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { deleteNote } from '../lib/DbService'
-import NoteCard from './NoteCard';
 import { Note } from '../models/Note';
+import ReadNoteCard from './ReadNoteCard';
 
 jest.mock('../lib/DbService', () => ({ deleteNote: jest.fn() }))
 
@@ -13,7 +13,9 @@ describe('In the ReadNoteCard component', () => {
     it('single note is displayed', () => {
         const testNote: Note = { title: 'compras', content: 'pan', id: '2gf3d4s5s' }
         let user = { uid: '', name: '', image: '', email: '' };
-        render(<NoteCard user={user} note={testNote} />);
+        const onClickFn = jest.fn();
+
+        render(<ReadNoteCard user={user} note={testNote} onClick={onClickFn} />);
 
         expect(screen.getByTestId('article')).toBeInTheDocument();
         expect(screen.getByText(testNote.title)).toBeInTheDocument();
@@ -23,11 +25,32 @@ describe('In the ReadNoteCard component', () => {
     it('deleteNote is called when the trash can icon is clicked', () => {
         let user = { uid: '', name: '', image: '', email: '' };
         let note = { title: '', content: '', id: '' };
-        render(<NoteCard user={user} note={note} />);
+        const onClickFn = jest.fn();
+
+        render(<ReadNoteCard user={user} note={note} onClick={onClickFn} />);
 
         const button = screen.getByTestId('delete-note');
         button.click();
 
         expect(deleteNoteMock).toBeCalledTimes(1);
     });
+
+    // it('onClickFn is called when clicked outside article', () => {
+    //     let user = { uid: '', name: '', image: '', email: '' };
+    //     let note = { title: '', content: '', id: '' };
+    //     const onClickFn = jest.fn();
+
+    //     render(
+    //         <div data-testid="test-click-outside">
+    //             <ReadNoteCard user={user} note={note} onClick={onClickFn} />
+    //         </div>
+    //     );
+
+    //     const outside = screen.getByTestId('test-click-outside');
+    //     outside.click();
+
+    //     expect(onClickFn).toHaveBeenCalledTimes(1);
+
+    // })
+
 })

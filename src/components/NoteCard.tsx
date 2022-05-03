@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { MyUser } from "../models/MyUser";
 import { Note } from "../models/Note";
 import EditNoteCard from "./EditNoteCard";
-
-import './NoteCard.css'
 import ReadNoteCard from "./ReadNoteCard";
 
 type Props = {
@@ -26,7 +24,7 @@ export default function NoteCard({ user, note }: Props) {
         <div>
             {showNoteToEdit
                 ? <EditNoteCard user={user} note={note} onClose={onEditClose} />
-                : <ReadNoteCard user={user} note={note} onOpen={onEditOpen} />
+                : <ReadNoteCard user={user} note={note} onClick={onEditOpen} />
             }
         </div>
     )

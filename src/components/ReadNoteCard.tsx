@@ -8,10 +8,10 @@ import './ReadNoteCard.css'
 type Props = {
     user: MyUser,
     note: Note,
-    onOpen: () => void,
+    onClick: () => void,
 }
 
-export default function ReadNoteCard({ user, note, onOpen }: Props) {
+export default function ReadNoteCard({ user, note, onClick: onOpen }: Props) {
 
     let divRef = useRef<HTMLDivElement>(null);
 
