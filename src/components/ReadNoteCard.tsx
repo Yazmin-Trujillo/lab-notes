@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { deleteNote } from "../lib/DbService";
 import { MyUser } from "../models/MyUser";
 import { Note } from "../models/Note";
+import './ReadNoteCard.css'
 
 
 type Props = {
