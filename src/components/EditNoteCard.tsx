@@ -26,14 +26,14 @@ export default function EditNoteCard({ user, note, onClose }: Props) {
 
     useEffect(() => {
         let handler = (event: MouseEvent) => {
-            if (!divRef.current!.contains(event.target as Node)) {
-               closeNote();
+            if (divRef.current && !divRef.current.contains(event.target as Node)) {
+                closeNote();
             }
         }
-        document.addEventListener("click", handler);
+        document.addEventListener("click", handler, true);
 
         return () => {
-            document.removeEventListener("click", handler);
+            document.removeEventListener("click", handler, true);
         }
     });
 

@@ -1,4 +1,4 @@
-.container .update-note-card{
+.update-note-card {
     /* border: 1px solid black;
     width: 80%;
     align-items: center;
@@ -29,8 +29,4 @@
     color: #0c0b0b;
     font-size: 1em;
     padding: 0.5em 0.75em;
-}
-
-.read-note-card .update-note-card {
-    display: none;
 }

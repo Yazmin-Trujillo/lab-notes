@@ -26,7 +26,7 @@ export default function CreateNotePanel({ user }: Props) {
 
     useEffect(() => {
         let handler = (event: MouseEvent) => {
-            if (!divRef.current!.contains(event.target as Node)) {
+            if (divRef.current && !divRef.current.contains(event.target as Node)) {
                 onClose();
             }
         }
