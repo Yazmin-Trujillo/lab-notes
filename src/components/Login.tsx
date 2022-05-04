@@ -1,14 +1,26 @@
 import React from "react";
 import './Login.css';
 import { signInWithGoogle } from '../lib/AuthService';
+import logoGoogle from '../assets/logoGoogle.png';
+import Lista from '../assets/Lista.png';
 
 export default function Login() {
-        return (
+    return (
         <div className="Login">
-            <h1>My Notes</h1>
-            <p className="text-login">Do you look bad for forgetting meetings, payments, shopping? forget about that too and start keeping track of your activities quickly and clearly.</p>
-            <p>Login with </p>
-            <button className="Login-button" data-testid="google-login" onClick={signInWithGoogle}>Google</button>
+            <h1 className="Title-app">My Notes</h1>
+            <div className="Line"></div>
+            <div>
+                <img src={Lista} className="Image-lista" alt="imgLista"></img>
+            </div>
+            <button className="Login-button"
+                data-testid="google-login"
+                onClick={signInWithGoogle}>
+                <img src={logoGoogle}
+                    className="App-logo-google"
+                    alt="logoGoogle">
+                </img>
+               Google
+            </button>
         </div>
     );
 }

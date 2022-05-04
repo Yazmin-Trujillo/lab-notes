@@ -1,0 +1,10 @@
+.footer-notes{
+    background-color:#00ffff54;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 32px;
+    padding-bottom: 16px;
+    border-top: 1px solid #070e1f;
+    z-index: 2000;
+}

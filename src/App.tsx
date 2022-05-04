@@ -3,6 +3,7 @@ import Login from "./components/Login";
 import Notes from "./components/Notes";
 import { userChanged } from "./lib/AuthService";
 import { MyUser } from "./models/MyUser";
+import './App.css'
 
 function App() {
   const [user, setUser] = useState<MyUser | undefined>(undefined);
