@@ -35,22 +35,17 @@ describe('In the ReadNoteCard component', () => {
         expect(deleteNoteMock).toBeCalledTimes(1);
     });
 
-    // it('onClickFn is called when clicked outside article', () => {
-    //     let user = { uid: '', name: '', image: '', email: '' };
-    //     let note = { title: '', content: '', id: '' };
-    //     const onClickFn = jest.fn();
+    it('onClickFn is called when clicked inside component', () => {
+        let user = { uid: '', name: '', image: '', email: '' };
+        let note = { title: '', content: '', id: '' };
+        const onClickFn = jest.fn();
 
-    //     render(
-    //         <div data-testid="test-click-outside">
-    //             <ReadNoteCard user={user} note={note} onClick={onClickFn} />
-    //         </div>
-    //     );
+        render(<ReadNoteCard user={user} note={note} onClick={onClickFn} />);
 
-    //     const outside = screen.getByTestId('test-click-outside');
-    //     outside.click();
+        const inside = screen.getByTestId('article');
+        inside.click();
 
-    //     expect(onClickFn).toHaveBeenCalledTimes(1);
-
-    // })
+        expect(onClickFn).toHaveBeenCalledTimes(1);
+    })
 
 })

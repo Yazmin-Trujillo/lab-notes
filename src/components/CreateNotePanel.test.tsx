@@ -14,52 +14,80 @@ describe('CreateNotePanel component', () => {
         let user = { uid: '', name: '', image: '', email: '' };
         render(<CreateNotePanel user={user} />);
 
-        const notePanel = screen.getByTestId('note-panel');
-        expect(notePanel.classList).toContain('minimized');
+        const noteAreaContainerMini = screen.getByTestId('note-area-container-mini');
+        expect(noteAreaContainerMini).toBeInTheDocument();
 
-        act(() => notePanel.click());
-        expect(notePanel.classList).not.toContain('minimized');
+        act(() => noteAreaContainerMini.click());
+        expect(screen.queryByTestId('note-area-container-mini')).not.toBeInTheDocument();
+        const noteAreaContainerMax = screen.getByTestId('maximized-area');
+        expect(noteAreaContainerMax).toBeInTheDocument();
     });
 
     it('when clicking close button, if the note is not empty it is saved', () => {
         let user = { uid: '', name: '', image: '', email: '' }
         render(<CreateNotePanel user={user} />);
 
-        const notePanel = screen.getByTestId('note-panel');
-        const noteContent = screen.getByTestId('note-content');
+        const noteAreaContainerMini = screen.getByTestId('note-area-container-mini');
 
-        act(() => notePanel.click());
+        act(() => noteAreaContainerMini.click());
 
+        const noteContent = screen.getByTestId<HTMLTextAreaElement>('note-content');
+        const title = screen.getByTestId<HTMLInputElement>('note-title');
         const closeButton = screen.getByTestId('close-button');
-        const title = screen.getByTestId('note-title');
+
         userEvent.type(title, 'Compras');
         userEvent.type(noteContent, 'leche,pan,huevos');
         act(() => closeButton.click());
 
-        expect(saveNote).toBeCalledTimes(1);
+        expect(saveNoteMock).toBeCalledTimes(1);
         let note: Note = { title: 'Compras', content: 'leche,pan,huevos', id: '' };
         expect(saveNote).toBeCalledWith(user, note);
     });
 
-    it('after saving the note the text box is cleared and hidden.', () => {
+    it('after saving the note, show note minimized.', () => {
         saveNoteMock.mockReturnValueOnce(Promise.resolve());
         let user = { uid: '', name: '', image: '', email: '' }
         render(<CreateNotePanel user={user} />);
 
-        let notePanel = screen.getByTestId('note-panel');
-        const noteContent = screen.getByTestId<HTMLTextAreaElement>('note-content');
-
-        act(() => notePanel.click());
+        const noteAreaContainerMini = screen.getByTestId('note-area-container-mini');
+        act(() => noteAreaContainerMini.click());
 
         const closeButton = screen.getByTestId('close-button');
         const title = screen.getByTestId<HTMLInputElement>('note-title');
+        const noteContent = screen.getByTestId<HTMLTextAreaElement>('note-content');
+
         userEvent.type(title, 'Compras');
         userEvent.type(noteContent, 'leche,pan,huevos');
         act(() => closeButton.click());
 
-        expect(title.value).toBe('');
-        expect(noteContent.value).toBe('');
-        // notePanel = screen.getByTestId('note-panel');
-        // expect(notePanel.classList).toContain('minimized')
+        expect(noteAreaContainerMini).toBeInTheDocument();
+
+    })
+
+    it('onClickFn is called when clicked outside component', () => {
+        let user = { uid: '', name: '', image: '', email: '' };
+        saveNoteMock.mockReturnValueOnce(Promise.resolve());
+
+        render(
+            <div data-testid="test-click-outside">
+                <CreateNotePanel user={user} />
+            </div>
+        );
+
+        const noteAreaContainerMini = screen.getByTestId('note-area-container-mini');
+        act(() => noteAreaContainerMini.click());
+        expect(screen.queryByTestId('note-area-container-mini')).not.toBeInTheDocument();
+        expect(screen.getByTestId('maximized-area')).toBeInTheDocument();
+        const title = screen.getByTestId<HTMLInputElement>('note-title');
+        const noteContent = screen.getByTestId<HTMLTextAreaElement>('note-content');
+
+        userEvent.type(title, 'Compras');
+        userEvent.type(noteContent, 'leche,pan,huevos');
+
+        const outside = screen.getByTestId('test-click-outside');
+        act(() => outside.click());
+
+        expect(saveNoteMock).toBeCalledTimes(1);
+        expect(noteAreaContainerMini).toBeInTheDocument();
     })
 })

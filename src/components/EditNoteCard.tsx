@@ -7,10 +7,10 @@ import './EditNoteCard.css'
 type Props = {
     user: MyUser,
     note: Note,
-    onClose: () => void,
+    onClick: () => void,
 }
 
-export default function EditNoteCard({ user, note, onClose }: Props) {
+export default function EditNoteCard({ user, note, onClick:onClose }: Props) {
     const id = note.id;
     const [title, setTitle] = useState<string>(note.title);
     const [content, setContent] = useState<string>(note.content);

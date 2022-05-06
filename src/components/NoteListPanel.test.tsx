@@ -21,8 +21,9 @@ describe('NoteListPanel component', () => {
     });
 
     it('multiple notes are displayed', () => {
-        const testNote: Note = { title: 'compras', content: 'pan', id: '1f2f3g3h4' }
-        seeNotesMock.mockImplementation(() => of([testNote, testNote]));
+        const testNote1: Note = { title: 'compras', content: 'pan', id: '1f2f3g3h4' }
+        const testNote2: Note = { title: 'pendientes', content: 'lavar', id: '1f2f3g3h5' }
+        seeNotesMock.mockImplementation(() => of([testNote1, testNote2]));
 
         let user = { uid: '', name: '', image: '', email: '' };
         render(<NoteListPanel user={user} />);

@@ -23,7 +23,7 @@ export default function NoteCard({ user, note }: Props) {
     return (
         <div>
             {showNoteToEdit
-                ? <EditNoteCard user={user} note={note} onClose={onEditClose} />
+                ? <EditNoteCard user={user} note={note} onClick={onEditClose} />
                 : <ReadNoteCard user={user} note={note} onClick={onEditOpen} />
             }
         </div>
