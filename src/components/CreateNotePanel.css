@@ -42,16 +42,11 @@
     padding: 0.5em 0.75em;
 }
 
-.minimized .note-area-title {
-    display: none;
-}
-
-.minimized .note-area-textarea {
+.note-area-textarea-mini {
     height: 1em;
-}
-
-.minimized .close-note-area {
-    display: none;
+    width: 90%;
+    border: none;
+    font-size: 1em;
 }
 
 /* Medium devices (landscape tablets, 768px and up) */

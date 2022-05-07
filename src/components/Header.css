@@ -4,6 +4,7 @@
     align-items: center;
     padding: 0.5em;
     border-bottom: solid 1px black;
+    background-color: #00ffff54;
 }
 
 .toolbar h1 {
@@ -29,7 +30,7 @@
     top: 5em;
     left: 2em;
     background-color: white;
-    min-width: 16em;
+    width: 50%;
 }
 
 .signout-button {
@@ -53,6 +54,10 @@
     border-radius: 50%;
 }
 
-.hidden {
-    display: none;
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+    .profile {
+        width: 40%;
+    }
 }

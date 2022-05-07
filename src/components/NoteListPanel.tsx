@@ -18,7 +18,7 @@ export default function NoteListPanel({ user }: Props) {
         <>
             <section className="section-notes" data-testid="section" >
                 {notes.map((note, index) => {
-                    return <NoteCard key={index} user={user} note={note} />
+                    return <NoteCard key={note.id} user={user} note={note} />
                 })}
             </section>
         </>
