@@ -1,6 +1,6 @@
 .read-note-card {
     background-color: #ffffffde;
-    text-align: justify;
+    text-align: left;
     border-radius: 10px;
     border: 1px solid #00000066;
     padding: .75em;
@@ -23,6 +23,7 @@
     white-space: pre-wrap;
     word-break: keep-all;
     margin: 0;
+    overflow: hidden;
 }
 
 .note-footer {
