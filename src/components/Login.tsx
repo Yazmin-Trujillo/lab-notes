@@ -9,7 +9,7 @@ export default function Login() {
         <div className="Login">
             <h1 className="Title-app">My Notes</h1>
             <div className="Line"></div>
-            <div>
+            <div className="image-container">
                 <img src={Lista} className="Image-lista" alt="imgLista"></img>
             </div>
             <button className="Login-button"
