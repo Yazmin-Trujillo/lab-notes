@@ -1,15 +1,17 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { updateNote } from '../lib/DbService'
+import { updateNote, deleteNote } from '../lib/DbService'
 import { Note } from '../models/Note';
 import EditNoteCard from './EditNoteCard';
 import userEvent from '@testing-library/user-event';
 
-jest.mock('../lib/DbService', () => ({ updateNote: jest.fn() }))
+jest.mock('../lib/DbService', () => ({ updateNote: jest.fn(), deleteNote: jest.fn() }))
 
 describe('EditNoteCard component', () => {
 
     const updateNoteMock = updateNote as jest.MockedFunction<any>;
+    const deleteNoteMock = deleteNote as jest.MockedFunction<any>;
+
 
     it('I must be able to see the note displayed with a title and/or content', () => {
         let user = { uid: '', name: '', image: '', email: '' };
@@ -24,12 +26,13 @@ describe('EditNoteCard component', () => {
         expect(title.value).toBe('compras');
         expect(noteContent.value).toBe('pan');
         expect(closeButton).toBeInTheDocument();
-        expect(updateNoteMock).toBeCalledTimes(0);
+        expect(deleteNoteMock).not.toBeCalled();
+        expect(updateNoteMock).not.toBeCalled();
     })
 
     it('I should be able to save changes to the note', () => {
         let user = { uid: '', name: '', image: '', email: '' };
-        const testNote: Note = { title: 'compras', content: 'pan', id: '2gf3d4s5s' }
+        let testNote: Note = { title: 'compras', content: 'pan', id: '2gf3d4s5s' }
         const onClickFn = jest.fn();
 
         render(<EditNoteCard user={user} note={testNote} onClick={onClickFn} />);
@@ -44,8 +47,6 @@ describe('EditNoteCard component', () => {
         expect(updateNoteMock).toBeCalledTimes(1);
         expect(title.value).toBe('compras pendientes');
         expect(content.value).toBe('pan, leche');
-        // let note: Note = { title: 'Compras', content: 'leche,pan,huevos', id: '' };
-        // expect(saveNote).toBeCalledWith(user, note);
     })
 
     it('onClickFn is called when clicked outside component', () => {
