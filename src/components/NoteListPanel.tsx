@@ -29,7 +29,7 @@ export default function NoteListPanel({ user }: Props) {
 
     return (
         <>
-            <Masonry breakpointCols = { breakpointColumnsObj }  className="my-masonry-grid" columnClassName="my-masonry-grid_column">
+            <Masonry breakpointCols = { breakpointColumnsObj }  className="my-masonry-grid" columnClassName="my-masonry-grid_column" data-testid="section">
                 {notes.map((note, index) => {
                     return <NoteCard key={note.id} user={user} note={note} />
                 })}
