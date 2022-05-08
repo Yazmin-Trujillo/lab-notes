@@ -18,6 +18,9 @@
     margin-bottom: .3em;
     font-size: 1.2em;
     font-weight: bold;
+    white-space: pre-wrap;
+    word-break: keep-all;
+    overflow: hidden;
 }
 
 .note-content {

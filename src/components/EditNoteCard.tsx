@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { updateNote } from "../lib/DbService";
+import { updateNote, deleteNote } from "../lib/DbService";
 import { MyUser } from "../models/MyUser";
 import { Note } from "../models/Note";
 import './EditNoteCard.css'
@@ -16,7 +16,9 @@ export default function EditNoteCard({ user, note, onClick: onClose }: Props) {
     const [content, setContent] = useState<string>(note.content);
 
     function closeNote() {
-        if (title !== note.title || content !== note.content) {
+        if (title === '' && content === '') {
+            deleteNote(user, note)
+        } else if (title !== note.title || content !== note.content) {
             updateNote(user, { title, content, id });
         }
         onClose()
