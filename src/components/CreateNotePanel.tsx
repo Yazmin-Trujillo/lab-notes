@@ -38,37 +38,29 @@ export default function CreateNotePanel({ user }: Props) {
     });
 
     return (
-        <div className="create-note-panel" data-testid="note-panel">
-            {showNoteArea ?
-                <div ref={divRef} className="note-area-container" data-testid="maximized-area">
-                    <div>
-                        <input
-                            className="note-area-title"
-                            placeholder="Title"
-                            onChange={event => setTitle(event.target.value)}
-                            value={title}
-                            data-testid="note-title" />
-                    </div>
-                    <div>
-                        <textarea
-                            placeholder="New Note..."
-                            className="note-area-textarea"
-                            onChange={event => setContent(event.target.value)}
-                            value={content}
-                            data-testid="note-content" />
-                    </div>
-                    <div className="close-note-area">
-                        <button onClick={onClose} data-testid="close-button">Close</button>
-                    </div>
+        <React.Fragment>
+            <div className={`note-area-container ${showNoteArea ? "" : "minimized"}`} data-testid="note-panel">
+                <div>
+                    <input
+                        className="note-area-title"
+                        placeholder="Title"
+                        onChange={event => setTitle(event.target.value)}
+                        value={title}
+                        data-testid="note-title" />
                 </div>
-                :
-                <div className="note-area-container" onClick={() => setShowNoteArea(true)} data-testid="note-area-container-mini">
+                <div>
                     <textarea
-                        placeholder="New Note ..."
-                        className="note-area-textarea-mini"
-                    />
+                        placeholder="New Note..."
+                        className="note-area-textarea"
+                        onClick={() => setShowNoteArea(true)}
+                        onChange={event => setContent(event.target.value)}
+                        value={content}
+                        data-testid="note-content" />
                 </div>
-            }
-        </div>
+                <div className="close-note-area">
+                    <button onClick={onClose} data-testid="close-button">Close</button>
+                </div>
+            </div>
+        </React.Fragment>
     )
 }
