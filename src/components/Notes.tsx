@@ -13,7 +13,7 @@ export default function Notes({ user }: NotesProps) {
     <React.Fragment>
       <Header user={user}></Header>
       <Main user={user}></Main>
-      <footer className="footer-notes"></footer>
+      <footer className="footer-notes">Copyright © 2022 | https://github.com/Yazmin-Trujillo</footer>
     </React.Fragment>
   )
 }
