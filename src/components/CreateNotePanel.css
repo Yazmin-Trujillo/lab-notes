@@ -42,11 +42,17 @@
     padding: 0.5em 0.75em;
 }
 
-.note-area-textarea-mini {
+.minimized .note-area-title {
+    display: none;
+}
+
+.minimized .note-area-textarea {
     height: 1em;
-    width: 90%;
-    border: none;
-    font-size: 1em;
+    min-height: auto;
+}
+
+.minimized .close-note-area {
+    display: none;
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -69,6 +75,7 @@
         width: 45%;
     }
 }
+
 
 /* Extra extra large devices (1400px and up) */
 @media only screen and (min-width: 1400px) {
