@@ -11,14 +11,14 @@ type Props = {
     onClick: () => void,
 }
 
-export default function ReadNoteCard({ user, note, onClick: onOpen }: Props) {
+export default function ReadNoteCard({ user, note, onClick: propsOnClick }: Props) {
 
     let divRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         let handler = (event: MouseEvent) => {
             if (divRef.current && divRef.current.contains(event.target as Node)) {
-                onOpen()
+                propsOnClick()
             }
         }
         document.addEventListener("click", handler);
@@ -30,8 +30,8 @@ export default function ReadNoteCard({ user, note, onClick: onOpen }: Props) {
 
     return (
         <div ref={divRef} className="read-note-card" data-testid="article">
-            <div className="note-title"><p>{note.title}</p></div>
-            <div className="note-content"><pre>{note.content}</pre></div>
+            <div className="note-title" onClick={() => propsOnClick()}><p>{note.title}</p></div>
+            <div className="note-content" onClick={() => propsOnClick()}><pre>{note.content}</pre></div>
             <div className="note-footer" >
                 <div className="delete-icon" onClick={() => deleteNote(user, note)} data-testid="delete-note">
                     <svg xmlns="http://www.w3.org/2000/svg"

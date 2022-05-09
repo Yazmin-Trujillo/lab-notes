@@ -16,9 +16,9 @@ describe('EditNoteCard component', () => {
     it('I must be able to see the note displayed with a title and/or content', () => {
         let user = { uid: '', name: '', image: '', email: '' };
         const testNote: Note = { title: 'compras', content: 'pan', id: '2gf3d4s5s' }
-        const onClickFn = jest.fn();
+        const onCloseFn = jest.fn();
 
-        render(<EditNoteCard user={user} note={testNote} onClick={onClickFn} />);
+        render(<EditNoteCard user={user} note={testNote} onClose={onCloseFn} />);
         const title = screen.getByTestId<HTMLInputElement>('note-title');
         const noteContent = screen.getByTestId<HTMLTextAreaElement>('note-content');
         const closeButton = screen.getByTestId("close-button")
@@ -33,9 +33,9 @@ describe('EditNoteCard component', () => {
     it('I should be able to save changes to the note', () => {
         let user = { uid: '', name: '', image: '', email: '' };
         let testNote: Note = { title: 'compras', content: 'pan', id: '2gf3d4s5s' }
-        const onClickFn = jest.fn();
+        const onCloseFn = jest.fn();
 
-        render(<EditNoteCard user={user} note={testNote} onClick={onClickFn} />);
+        render(<EditNoteCard user={user} note={testNote} onClose={onCloseFn} />);
 
         const closeButton = screen.getByTestId('close-button');
         const title = screen.getByTestId<HTMLInputElement>('note-title');
@@ -52,17 +52,17 @@ describe('EditNoteCard component', () => {
     it('onClickFn is called when clicked outside component', () => {
         let user = { uid: '', name: '', image: '', email: '' };
         let note = { title: '', content: '', id: '' };
-        const onClickFn = jest.fn();
+        const onCloseFn = jest.fn();
 
         render(
             <div data-testid="test-click-outside">
-                <EditNoteCard user={user} note={note} onClick={onClickFn} />
+                <EditNoteCard user={user} note={note} onClose={onCloseFn} />
             </div>
         );
 
         const outside = screen.getByTestId('test-click-outside');
         outside.click();
 
-        expect(onClickFn).toHaveBeenCalledTimes(1);
+        expect(onCloseFn).toHaveBeenCalledTimes(1);
     })
 })

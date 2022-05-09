@@ -6,12 +6,11 @@
     height: 100vh;
     overflow-y: hidden;
     background-color: rgba(0, 0, 0, .2);
-    /* background-color: rgba(79, 197, 226, .2); */
     display: flex;
     justify-content: center;
 }
 
-.update-note-card {
+ .update-note-card {
     width: 84%;
     margin-top: 10em;
     display: block;

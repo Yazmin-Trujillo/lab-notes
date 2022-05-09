@@ -26,8 +26,10 @@ export default function CreateNotePanel({ user }: Props) {
 
     useEffect(() => {
         let handler = (event: MouseEvent) => {
+           
             if (divRef.current && !divRef.current.contains(event.target as Node)) {
                 onClose();
+              
             }
         }
         document.addEventListener("click", handler, true);
@@ -38,8 +40,8 @@ export default function CreateNotePanel({ user }: Props) {
     });
 
     return (
-        <React.Fragment>
-            <div className={`note-area-container ${showNoteArea ? "" : "minimized"}`} data-testid="note-panel">
+        <>
+            <div ref={divRef} className={`note-area-container ${showNoteArea ? "" : "minimized"}`} data-testid="note-panel">
                 <div>
                     <input
                         className="note-area-title"
@@ -61,6 +63,6 @@ export default function CreateNotePanel({ user }: Props) {
                     <button onClick={onClose} data-testid="close-button">Close</button>
                 </div>
             </div>
-        </React.Fragment>
+        </>
     )
 }
