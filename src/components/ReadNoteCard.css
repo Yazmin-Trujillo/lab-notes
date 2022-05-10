@@ -31,7 +31,11 @@
     white-space: pre-wrap;
     word-break: keep-all;
     margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 20;
+    -webkit-box-orient: vertical;
     overflow: hidden;
+    font-size: 1.2em;
 }
 
 .note-footer {

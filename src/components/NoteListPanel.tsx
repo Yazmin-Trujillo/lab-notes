@@ -18,9 +18,9 @@ export default function NoteListPanel({ user }: Props) {
 
     const  breakpointColumnsObj  =  { 
         predeterminado : 4 , 
-        2560 : 6,
-        1440 : 6,
-        1200 : 5,
+        2560 : 5,
+        1440 : 5,
+        1200 : 4,
         992 : 4,
         768 : 3 , 
         425 : 2 , 
@@ -30,7 +30,7 @@ export default function NoteListPanel({ user }: Props) {
     return (
         <>
             <Masonry breakpointCols = { breakpointColumnsObj }  className="my-masonry-grid" columnClassName="my-masonry-grid_column" data-testid="section">
-                {notes.map((note, index) => {
+                {notes.map((note) => {
                     return <NoteCard key={note.id} user={user} note={note} />
                 })}
             </Masonry>
