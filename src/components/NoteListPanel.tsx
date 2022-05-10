@@ -18,9 +18,9 @@ export default function NoteListPanel({ user }: Props) {
 
     const  breakpointColumnsObj  =  { 
         predeterminado : 4 , 
-        2560 : 6,
-        1440 : 6,
-        1200 : 5,
+        2560 : 5,
+        1440 : 5,
+        1200 : 4,
         992 : 4,
         768 : 3 , 
         425 : 2 , 
