@@ -8,6 +8,7 @@ import './App.css'
 function App() {
   const [user, setUser] = useState<MyUser | undefined>(undefined);
 
+  //mi observable.me subscribo.cuando pase el evento => hago esto
   useEffect(() => {
     userChanged().subscribe((user) =>  setUser(user))
   }, [])
